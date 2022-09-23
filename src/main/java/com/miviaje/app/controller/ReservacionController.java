@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -86,10 +87,15 @@ public class ReservacionController {
 		}
 		return message;
 	}
-	
+
 	@GetMapping("/hoteles/ciudad/{ciudad}")
 	public List<Hotel> getHotelByCiudad(@PathVariable String ciudad) {
 		return reservacionService.getHotelByCiudad(ciudad);
+	}
+
+	@GetMapping("/top")
+	public Map<Integer, Integer> topHoteles() {
+		return reservacionService.topHoteles();
 	}
 
 	/*
@@ -124,22 +130,23 @@ public class ReservacionController {
 	public Reserva getReservaXId(@PathVariable int id) {
 		return reservacionService.getReservaXId(id);
 	}
-	
+
 	@GetMapping("/reservas/cedulatoken")
-	public Reserva getReservaByTokenDocumento(@RequestParam String numeroDocumento, @RequestParam String token) {
-		return reservacionService.getReservaByTokenDocumento(numeroDocumento, token);
+	public Reserva getReservaByTokenDocumento(@RequestParam String numeroDocumento, @RequestParam String token,
+			@RequestParam String tipoDocumento) {
+		return reservacionService.getReservaByTokenDocumento(numeroDocumento, token, tipoDocumento);
 	}
-	
+
 	@GetMapping("/reservas/token/{id}")
 	public String findTokenByID(@PathVariable int id) {
 		return reservacionService.findTokenByID(id);
 	};
-	
+
 	@GetMapping("/reservas/documento/{numeroDocumento}")
 	public String findTokenByDocumento(@PathVariable String numeroDocumento) {
 		return reservacionService.findTokenByDocumento(numeroDocumento);
 	}
-	
+
 	@DeleteMapping("/reservas/{id}")
 	public String eliminarReservas(@PathVariable int id) {
 		String message = "";
@@ -151,12 +158,21 @@ public class ReservacionController {
 		}
 		return message;
 	}
-	
-	@GetMapping ("/top")
-	public Map<Integer, Integer> topHoteles() {
-		return reservacionService.topHoteles();
+
+	@PutMapping("/reservas")
+	public String actualizarReserva(@RequestParam int id, @RequestBody Reserva reserva) {
+		String message = "No se pudo actualizar la reserva";
+		try {
+			if (reservacionService.actualizarReserva(id, reserva)) {
+				message = "Reserva actualizada";
+			}
+
+		} catch (DataAccessException e) {
+			message = e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage());
+		}
+
+		return message;
 	}
-	
 
 	/*
 	 * 

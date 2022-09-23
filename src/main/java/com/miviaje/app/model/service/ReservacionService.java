@@ -41,7 +41,7 @@ public class ReservacionService implements IReservacionService {
 	public Hotel getHotelXId(int id) {
 		return hotelDao.findById(id).get();
 	}
-	
+
 	@Override
 	public List<Hotel> getHotelByCiudad(String ciudad) {
 		return hotelDao.findHotelByCiudad(ciudad);
@@ -92,20 +92,29 @@ public class ReservacionService implements IReservacionService {
 	public Reserva getReservaXId(int id) {
 		return reservaDao.findById(id).get();
 	}
-	
+
 	@Override
-	public Reserva getReservaByTokenDocumento(String numeroDocumento, String token) {
-		return reservaDao.findReservaByTokenDocumento(numeroDocumento, token);
+	public Reserva getReservaByTokenDocumento(String numeroDocumento, String token, String tipoDocumento) {
+		return reservaDao.findReservaByTokenDocumento(numeroDocumento, token, tipoDocumento);
 	}
 
 	@Override
 	public String findTokenByID(int id) {
 		return reservaDao.findTokenByID(id);
 	};
-	
+
 	@Override
 	public String findTokenByDocumento(String numeroDocumento) {
 		return reservaDao.findTokenByDocumento(numeroDocumento);
+	}
+
+	public boolean actualizarReserva(int id, Reserva reserva) {
+		boolean estado = false;
+		if (reservaDao.findById(id).isPresent() == true) {
+			reservaDao.save(reserva);
+			estado = true;
+		}
+		return estado;
 	}
 
 	@Override
@@ -164,5 +173,4 @@ public class ReservacionService implements IReservacionService {
 		contactoDao.deleteById(id);
 	}
 
-	
 }

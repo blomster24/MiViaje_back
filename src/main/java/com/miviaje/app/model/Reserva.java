@@ -1,6 +1,6 @@
 package com.miviaje.app.model;
 
-import java.security.SecureRandom;
+
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -29,6 +29,7 @@ public class Reserva {
 	private String tipoDocumento;
 	private String numeroDocumento;
 	private int fkHotel;
+	private int habitaciones;
 	
 
 	public Reserva() {
@@ -37,7 +38,7 @@ public class Reserva {
 
 	public Reserva(int idReservas,String token,  Date fechaInicial, Date fechaFinal, int cantidadPersonas,
 			String nombrePersona, String apellidoPersona, String correoPersona, String telefonoPersona,
-			String tipoDocumento, String numeroDocumento, int fkHotel) {
+			String tipoDocumento, String numeroDocumento, int fkHotel, int habitaciones) {
 		this.idReservas = idReservas;
 		this.token = token;
 		this.fechaInicial = fechaInicial;
@@ -50,10 +51,17 @@ public class Reserva {
 		this.tipoDocumento = tipoDocumento;
 		this.numeroDocumento = numeroDocumento;
 		this.fkHotel=fkHotel;
+		this.habitaciones=habitaciones;
 	}
 
-	
-	
+
+	public int getHabitaciones() {
+		return habitaciones;
+	}
+
+	public void setHabitaciones(int habitaciones) {
+		this.habitaciones = habitaciones;
+	}
 
 	public int getIdReservas() {
 		return idReservas;

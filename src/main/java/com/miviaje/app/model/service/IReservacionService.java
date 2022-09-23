@@ -36,13 +36,15 @@ public interface IReservacionService {
 
 	public Reserva getReservaXId(int id);
 	
-	public Reserva getReservaByTokenDocumento(String numeroDocumento, String token);
+	public Reserva getReservaByTokenDocumento(String numeroDocumento, String token, String tipoDocumento);
 	
 	public String findTokenByID(int id);
 	
 	public String findTokenByDocumento(String numeroDocumento);
 
 	public Reserva crearReserva(Reserva reserva);
+	
+	public boolean actualizarReserva(int id, Reserva reserva);
 	
 	public void eliminarReserva(int id);
 	
