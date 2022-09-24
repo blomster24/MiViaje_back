@@ -121,44 +121,38 @@ public class ReservacionController {
 		return message;
 	}
 
+	// Obtiene todas las reservas
 	@GetMapping("/reservas")
 	public List<Reserva> getReservas() {
 		return reservacionService.getReservas();
 	}
 
+	// Obtiene una reserva por su ID
 	@GetMapping("/reservas/{id}")
 	public Reserva getReservaXId(@PathVariable int id) {
 		return reservacionService.getReservaXId(id);
 	}
 
+	// Obtiene una reserva por el documento y el token
 	@GetMapping("/reservas/cedulatoken")
 	public Reserva getReservaByTokenDocumento(@RequestParam String numeroDocumento, @RequestParam String token,
 			@RequestParam String tipoDocumento) {
 		return reservacionService.getReservaByTokenDocumento(numeroDocumento, token, tipoDocumento);
 	}
-
+	
+	// Obtiene un token de una reserva por su id
 	@GetMapping("/reservas/token/{id}")
 	public String findTokenByID(@PathVariable int id) {
 		return reservacionService.findTokenByID(id);
 	};
 
+	// Obtiene un token por el documento
 	@GetMapping("/reservas/documento/{numeroDocumento}")
 	public String findTokenByDocumento(@PathVariable String numeroDocumento) {
 		return reservacionService.findTokenByDocumento(numeroDocumento);
 	}
 
-	@DeleteMapping("/reservas/{id}")
-	public String eliminarReservas(@PathVariable int id) {
-		String message = "";
-		try {
-			reservacionService.eliminarReserva(id);
-			message = "Reserva eliminada con exito";
-		} catch (DataAccessException e) {
-			message = e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage());
-		}
-		return message;
-	}
-
+	// Actualiza una reserva
 	@PutMapping("/reservas")
 	public String actualizarReserva(@RequestParam int id, @RequestBody Reserva reserva) {
 		String message = "No se pudo actualizar la reserva";
@@ -173,6 +167,21 @@ public class ReservacionController {
 
 		return message;
 	}
+	
+	// Elimina una reserva
+	@DeleteMapping("/reservas/{id}")
+	public String eliminarReservas(@PathVariable int id) {
+		String message = "";
+		try {
+			reservacionService.eliminarReserva(id);
+			message = "Reserva eliminada con exito";
+		} catch (DataAccessException e) {
+			message = e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage());
+		}
+		return message;
+	}
+
+	
 
 	/*
 	 * 
