@@ -1,5 +1,6 @@
 package com.miviaje.app.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.miviaje.app.model.Contacto;
 import com.miviaje.app.model.Hotel;
 import com.miviaje.app.model.Reserva;
@@ -139,7 +141,7 @@ public class ReservacionController {
 			@RequestParam String tipoDocumento) {
 		return reservacionService.getReservaByTokenDocumento(numeroDocumento, token, tipoDocumento);
 	}
-	
+
 	// Obtiene un token de una reserva por su id
 	@GetMapping("/reservas/token/{id}")
 	public String findTokenByID(@PathVariable int id) {
@@ -149,17 +151,22 @@ public class ReservacionController {
 	// Obtiene un token por el documento
 	@GetMapping("/reservas/documento/{numeroDocumento}")
 	public String findTokenByDocumento(@PathVariable String numeroDocumento) {
+		// HashMap<String, String> map = new HashMap<>();
+		// map.put("token", reservacionService.findTokenByDocumento(numeroDocumento));
+
+//		return map;
+
 		return reservacionService.findTokenByDocumento(numeroDocumento);
+
 	}
 
 	// Actualiza una reserva
 	@PutMapping("/reservas")
-	public String actualizarReserva(@RequestParam int id, @RequestBody Reserva reserva) {
+	public String actualizarReserva(@RequestBody Reserva reserva) {
 		String message = "No se pudo actualizar la reserva";
 		try {
-			if (reservacionService.actualizarReserva(id, reserva)) {
-				message = "Reserva actualizada";
-			}
+			reservacionService.actualizarReserva(reserva);
+			message = "Reserva actualizada";
 
 		} catch (DataAccessException e) {
 			message = e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage());
@@ -167,7 +174,7 @@ public class ReservacionController {
 
 		return message;
 	}
-	
+
 	// Elimina una reserva
 	@DeleteMapping("/reservas/{id}")
 	public String eliminarReservas(@PathVariable int id) {
@@ -180,8 +187,6 @@ public class ReservacionController {
 		}
 		return message;
 	}
-
-	
 
 	/*
 	 * 

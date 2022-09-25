@@ -108,13 +108,13 @@ public class ReservacionService implements IReservacionService {
 		return reservaDao.findTokenByDocumento(numeroDocumento);
 	}
 
-	public boolean actualizarReserva(int id, Reserva reserva) {
-		boolean estado = false;
-		if (reservaDao.findById(id).isPresent() == true) {
-			reservaDao.save(reserva);
-			estado = true;
-		}
-		return estado;
+	public Reserva actualizarReserva( Reserva reserva) {
+		//boolean estado = false;
+		//if (reservaDao.findById(id).isPresent() == true) {
+			
+			//estado = true;
+		//}
+		return reservaDao.save(reserva);
 	}
 
 	@Override

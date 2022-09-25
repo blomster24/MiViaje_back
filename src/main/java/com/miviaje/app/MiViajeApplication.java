@@ -23,15 +23,7 @@ public class MiViajeApplication {
 				// "registry.addMapping("/mascotas").allowedOrigins("*");" y se cambia la ruta
 				// addMapping
 				// cambiamos * por el dominio o puerto para dar permiso en especifico
-				registry.addMapping("/api/hoteles/ciudad/*").allowedOrigins("*");
-				registry.addMapping("/api/hoteles").allowedOrigins("*"); 
-                registry.addMapping("/api/hoteles/bogota").allowedOrigins("*"); 
-                registry.addMapping("/api/reservas").allowedOrigins("*"); 
-                registry.addMapping("/api/reservas/id").allowedOrigins("*"); 
-                registry.addMapping("/api/reservas/id/*").allowedOrigins("*");
-                registry.addMapping("/api/reservas/token/*").allowedOrigins("*"); 
-                registry.addMapping("/api/reservas/token").allowedOrigins("*");
-                registry.addMapping("/api/reservas/documento/*").allowedOrigins("*");
+				registry.addMapping("/**").allowedMethods("*");
 			}
 		};
 	}

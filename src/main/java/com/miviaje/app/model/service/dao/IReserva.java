@@ -1,6 +1,8 @@
 package com.miviaje.app.model.service.dao;
 
 
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -20,5 +22,7 @@ public interface IReserva extends CrudRepository<Reserva, Integer>{
 	
 	@Query("SELECT r.token FROM Reserva r WHERE r.numeroDocumento = :numeroDocumento")
 	public String findTokenByDocumento(@Param("numeroDocumento") String numeroDocumento);
+	
+	
 	
 }

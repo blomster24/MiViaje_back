@@ -15,7 +15,7 @@ import com.miviaje.app.model.service.ReservacionService;
 public class Reserva {
 
 	@Id
-	@Column(name = "idreservas")
+	@Column(name = "id_reservas")
 	private int idReservas;
 	private String token=ReservacionService.generarToken(10);
 	private Date fechaInicial;
@@ -29,7 +29,7 @@ public class Reserva {
 	private String tipoDocumento;
 	private String numeroDocumento;
 	private int fkHotel;
-	private int habitaciones;
+	private int cantidadHabitaciones;
 	
 
 	public Reserva() {
@@ -38,7 +38,7 @@ public class Reserva {
 
 	public Reserva(int idReservas,String token,  Date fechaInicial, Date fechaFinal, int cantidadPersonas,
 			String nombrePersona, String apellidoPersona, String correoPersona, String telefonoPersona,
-			String tipoDocumento, String numeroDocumento, int fkHotel, int habitaciones) {
+			String tipoDocumento, String numeroDocumento, int fkHotel, int cantidadHabitaciones) {
 		this.idReservas = idReservas;
 		this.token = token;
 		this.fechaInicial = fechaInicial;
@@ -51,16 +51,16 @@ public class Reserva {
 		this.tipoDocumento = tipoDocumento;
 		this.numeroDocumento = numeroDocumento;
 		this.fkHotel=fkHotel;
-		this.habitaciones=habitaciones;
+		this.cantidadHabitaciones=cantidadHabitaciones;
 	}
 
 
-	public int getHabitaciones() {
-		return habitaciones;
+	public int getcantidadHabitaciones() {
+		return cantidadHabitaciones;
 	}
 
-	public void setHabitaciones(int habitaciones) {
-		this.habitaciones = habitaciones;
+	public void setcantidadHabitaciones(int cantidadHabitaciones) {
+		this.cantidadHabitaciones = cantidadHabitaciones;
 	}
 
 	public int getIdReservas() {

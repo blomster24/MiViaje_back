@@ -44,7 +44,7 @@ public interface IReservacionService {
 
 	public Reserva crearReserva(Reserva reserva);
 	
-	public boolean actualizarReserva(int id, Reserva reserva);
+	public Reserva actualizarReserva( Reserva reserva);
 	
 	public void eliminarReserva(int id);
 	
