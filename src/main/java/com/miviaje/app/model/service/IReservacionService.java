@@ -42,6 +42,8 @@ public interface IReservacionService {
 	
 	public String findTokenByDocumento(String numeroDocumento);
 
+	public String recuperarToken(String tipoDocumento, String numeroDocumento, String correoPersona);
+	
 	public Reserva crearReserva(Reserva reserva);
 	
 	public Reserva actualizarReserva( Reserva reserva);

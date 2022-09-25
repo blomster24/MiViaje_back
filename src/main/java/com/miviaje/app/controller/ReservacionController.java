@@ -159,6 +159,13 @@ public class ReservacionController {
 		return reservacionService.findTokenByDocumento(numeroDocumento);
 
 	}
+	
+	
+	// Recuperar el token cuando se olvida
+	@GetMapping("/reservas/recuperarToken")
+	public String recuperarToken(String tipoDocumento, String numeroDocumento, String correoPersona) {
+		return reservacionService.recuperarToken(tipoDocumento, numeroDocumento, correoPersona);
+	}
 
 	// Actualiza una reserva
 	@PutMapping("/reservas")

@@ -126,10 +126,10 @@ public class ReservacionService implements IReservacionService {
 	 * Generar Token
 	 */
 	public static String generarToken(int longitud) {
-		String letrasMin = "abcdefghijklmnopqrstuvwxyz";
-		String letrasMayu = letrasMin.toUpperCase();
+		String letrasMin = "abcdefghijklmnopqrstuvwxyz".toUpperCase();
+		//String letrasMayu = letrasMin.toUpperCase();
 		String numeros = "0123456789";
-		String randomToken = letrasMin + letrasMayu + numeros;
+		String randomToken = letrasMin  + numeros;
 		SecureRandom random = new SecureRandom();
 
 		if (longitud < 1)
@@ -144,6 +144,14 @@ public class ReservacionService implements IReservacionService {
 		}
 		return tokenFinal.toString();
 	}
+	
+	/*
+	 * Recuperar el token cuando se olvida
+	 * */
+	public String recuperarToken(String tipoDocumento, String numeroDocumento, String correoPersona) {
+		return reservaDao.recuperarToken(tipoDocumento, numeroDocumento, correoPersona);
+	}
+	
 
 	/*
 	 * 

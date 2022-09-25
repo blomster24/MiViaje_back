@@ -24,5 +24,9 @@ public interface IReserva extends CrudRepository<Reserva, Integer>{
 	public String findTokenByDocumento(@Param("numeroDocumento") String numeroDocumento);
 	
 	
+	// Consulta para recuperar el token cuando se olvida
+	@Query("SELECT r.token FROM Reserva r WHERE r.tipoDocumento = :tipoDocumento AND r. numeroDocumento = :numeroDocumento AND r.correoPersona = :correoPersona")
+	public String recuperarToken(@Param("tipoDocumento") String tipoDocumento, @Param("numeroDocumento") String numeroDocumento, @Param("correoPersona") String correoPersona);
+	
 	
 }
