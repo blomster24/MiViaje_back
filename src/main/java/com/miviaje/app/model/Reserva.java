@@ -1,7 +1,7 @@
 package com.miviaje.app.model;
 
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,8 +18,8 @@ public class Reserva {
 	@Column(name = "id_reservas")
 	private int idReservas;
 	private String token=ReservacionService.generarToken(10);
-	private Date fechaInicial;
-	private Date fechaFinal;
+	private LocalDate fechaInicial;
+	private LocalDate fechaFinal;
 	private int cantidadPersonas;
 	private String nombrePersona;
 	// @Column(name="apellido_persona")
@@ -36,7 +36,7 @@ public class Reserva {
 
 	}
 
-	public Reserva(int idReservas,String token,  Date fechaInicial, Date fechaFinal, int cantidadPersonas,
+	public Reserva(int idReservas,String token,  LocalDate fechaInicial, LocalDate fechaFinal, int cantidadPersonas,
 			String nombrePersona, String apellidoPersona, String correoPersona, String telefonoPersona,
 			String tipoDocumento, String numeroDocumento, int fkHotel, int cantidadHabitaciones) {
 		this.idReservas = idReservas;
@@ -75,19 +75,19 @@ public class Reserva {
 		return token;
 	}
 
-	public Date getFechaInicial() {
+	public LocalDate getFechaInicial() {
 		return fechaInicial;
 	}
 
-	public void setFechaInicial(Date fechaInicial) {
+	public void setFechaInicial(LocalDate fechaInicial) {
 		this.fechaInicial = fechaInicial;
 	}
 
-	public Date getFechaFinal() {
+	public LocalDate getFechaFinal() {
 		return fechaFinal;
 	}
 
-	public void setFechaFinal(Date fechaFinal) {
+	public void setFechaFinal(LocalDate fechaFinal) {
 		this.fechaFinal = fechaFinal;
 	}
 
